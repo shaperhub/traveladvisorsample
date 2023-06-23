@@ -24,10 +24,12 @@ export const getPlacesData = async (sw, ne) => {
 };
 
 export const getWeatherData = async (lat, lng) => {
+  lat = parseFloat(lat);
+  lng = parseFloat(lng);
   try {
     
       const { data: { data } } = await axios.get('https://weatherapi-com.p.rapidapi.com/current.json', {
-        params: {q: `${lat},${lng}` },
+        params: {q: lat,lng },
         headers: {
           'X-RapidAPI-Key': '235f5c3932msh6b871250f145c28p158405jsnae02c489bedc',
           'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',

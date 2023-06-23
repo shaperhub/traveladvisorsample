@@ -13,6 +13,8 @@ const App = () => {
   const [coordinates, setCoordinates] = useState({});
   const [bounds, setBounds] = useState(null);
   const [weatherData, setWeatherData] = useState([]);
+  const [childClicked, setChildClicked] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: {latitude, longitude} }) => {
@@ -22,18 +24,18 @@ const App = () => {
 
   useEffect(() => {
     if (bounds) {
+        setIsLoading(true);
         getPlacesData(bounds.sw, bounds.ne)
         .then((data) => {
-            // console.log(data);
-
             setPlaces(data);
+            setIsLoading(false);
         })
 
-        getWeatherData(coordinates.lat, coordinates.lng)
-        .then((data) => {
-            console.log(data);
-            setWeatherData(data);
-        });
+        // getWeatherData(coordinates.lat, coordinates.lng)
+        // .then((data) => {
+        //     console.log(data);
+        //     setWeatherData(data);
+        // });
     }
     
   }, [coordinates, bounds]);
@@ -46,6 +48,8 @@ const App = () => {
             <Grid item xs={12} md={4}>
                 <List 
                     places={places}
+                    childClicked={childClicked}
+                    isLoading={isLoading}
                 />
             </Grid>
             <Grid item xs={12} md={8}>
@@ -54,6 +58,7 @@ const App = () => {
                     setBounds={setBounds}
                     coordinates={coordinates}
                     places={places}
+                    setChildClicked={setChildClicked}
                 />
             </Grid>
         </Grid>
