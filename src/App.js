@@ -25,11 +25,11 @@ const App = () => {
     })
   }, []);
 
-//   useEffect(() => {
-//     const filtered = places.filter((place) => Number(place.rating) > rating);
+  useEffect(() => {
+    const filteredPlaces = places.filter((place) => Number(place.rating) > rating);
 
-//     setFilteredPlaces(filtered);
-//   }, [rating]);
+    setFilteredPlaces(filteredPlaces);
+  }, [rating]);
 
   useEffect(() => {
     if (bounds) {
@@ -70,7 +70,7 @@ const App = () => {
                 <List 
                     isLoading={isLoading}
                     childClicked={childClicked}
-                    places={places}
+                    places={filteredPlaces.length ? filteredPlaces : places}
                     type={type}
                     setType={setType}
                     rating={rating}
@@ -82,7 +82,7 @@ const App = () => {
                     setCoords={setCoords}
                     setBounds={setBounds}
                     coords={coords}
-                    places={places}
+                    places={filteredPlaces.length ? filteredPlaces : places}
                     weatherData={weatherData}
                     setChildClicked={setChildClicked}
                 />
