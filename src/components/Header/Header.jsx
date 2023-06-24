@@ -10,7 +10,6 @@ const Header = ({ setCoords }) => {
   const classes = useStyles();
   const [autocomplete, setAutocomplete] = useState(null);
 
-
   const onLoad = (autoC) => setAutocomplete(autoC);
 
   const onPlaceChanged = () => {

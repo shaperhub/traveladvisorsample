@@ -17,7 +17,6 @@ const App = () => {
   const [type, setType] = useState('restaurants');
   const [rating, setRating] = useState('');
   const [filteredPlaces, setFilteredPlaces] = useState([]);
-  const [autocomplete, setAutocomplete] = useState(null);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: {latitude, longitude} }) => {
@@ -45,20 +44,11 @@ const App = () => {
         getWeatherData(coords.lat, coords.lng)
         .then((data) => {
             setWeatherData(data);
-            console.log("Weather check - " + weatherData);
+            // console.log("Weather check - " + weatherData);
         });
     }
     
   }, [type, bounds]);
-
-//   const onLoad = (autoC) => setAutocomplete(autoC);
-
-//   const onPlaceChanged = () => {
-//     const lat = autocomplete.getPlace().geometry.location.lat();
-//     const lng = autocomplete.getPlace().geometry.location.lng();
-
-//     setCoords({ lat, lng });
-//   };
 
 
   return (
