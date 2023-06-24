@@ -36,20 +36,20 @@ const App = () => {
         setIsLoading(true);
         getPlacesData(type, bounds.sw, bounds.ne)
         .then((data) => {
-            setPlaces(data);
+            setPlaces(data?.filter((place) => place.name && place.num_reviews > 0));
             setFilteredPlaces([]);
             setRating('');
             setIsLoading(false);
         })
 
-        // getWeatherData(coords.lat, coords.lng)
-        // .then((data) => {
-        //     console.log(data);
-        //     setWeatherData(data);
-        // });
+        getWeatherData(coords.lat, coords.lng)
+        .then((data) => {
+            setWeatherData(data);
+            console.log("Weather check - " + weatherData);
+        });
     }
     
-  }, [type, coords, bounds]);
+  }, [type, bounds]);
 
 //   const onLoad = (autoC) => setAutocomplete(autoC);
 

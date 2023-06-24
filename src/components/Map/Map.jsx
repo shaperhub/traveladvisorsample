@@ -53,16 +53,14 @@ const Map = ({ setCoords, setBounds, coords, places, setChildClicked, weatherDat
               }
             </div>
           ))}
-          {/* {weatherData?.list?.length && weatherData.list.map((data, i) => (
-            <div key={i} lat={data.coord.lat} lng={data.coord.lon}>
-              <img src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`} height="70px" alt=''/>
+          {weatherData?.length ?
+            <>
+            <div>
+              <img src={weatherData} height="70px" alt=''/>
             </div>
-          ))} */}
-          {/* {weatherData.length && weatherData.map((data, index) => (
-            <div key={index} lat={data[0]} lng={data[1]}>
-              <img height={75} src={data[2]} alt=''/>
-            </div>
-          ))} */}
+            </>
+            : ""
+          }
         </GoogleMapReact>
     </div>
   );

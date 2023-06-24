@@ -22,19 +22,17 @@ export const getPlacesData = async (type, sw, ne) => {
 };
 
 export const getWeatherData = async (lat, lng) => {
-  lat = parseFloat(lat);
-  lng = parseFloat(lng);
   try {
-    
-      const { data: { data } } = await axios.get('https://weatherapi-com.p.rapidapi.com/current.json', {
-        params: {q: lat,lng },
+      const { data } = await axios.get(`https://weatherapi-com.p.rapidapi.com/current.json?q=${lat}%2C${lng}`, {
+        // params: {lat: lat, lng: lng },
         headers: {
-          'X-RapidAPI-Key': '235f5c3932msh6b871250f145c28p158405jsnae02c489bedc',
+          'X-RapidAPI-Key': '0fa1a313demshfe0ea3577a5b612p12329cjsnd487d6442b1e',
           'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
         },
       });
-      // console.log("Weather Data: " + data);
-      return data;
+      const weathericon = ("https:" + JSON.stringify(data['current']['condition']['icon'])).replace(/"/g,'');
+      // console.log("Weather Data: " + weathericon);
+      return weathericon;
     
   } catch (error) {
     console.log("Weather Error: " + error);
