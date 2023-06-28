@@ -24,7 +24,6 @@ export const getPlacesData = async (type, sw, ne) => {
 export const getWeatherData = async (lat, lng) => {
   try {
       const { data } = await axios.get(`https://weatherapi-com.p.rapidapi.com/current.json?q=${lat}%2C${lng}`, {
-        // params: {lat: lat, lng: lng },
         headers: {
           'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_WEATHER_API_KEY,
           'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
